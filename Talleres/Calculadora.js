@@ -25,8 +25,7 @@ const menu = async() => {
     const opcionIngresada = await preguntar("Selecciona una opcion: ");
     // Procesar la opción seleccionada
     //En cada caso solicitamos los números necesarios y mostramos el resultado 
-    //(considero que es mejor asi para que el usuario vea el proceso)
-    //Uso el parseFloat para convertir las entradas de texto a números decimales
+    //Uso el parseFloat para convertir las entradas de texto a números y permita números decimales
     switch (opcionIngresada) {
         case "1":
             console.clear();
