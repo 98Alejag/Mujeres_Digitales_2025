@@ -30,9 +30,6 @@ const menu = async() => {
         case "1":
             console.clear();
             console.log("===== Suma =====");
-            // const num1 = await preguntar("Ingrese el primer número: ");
-            // const num2 = await preguntar("Ingrese el segundo número: ");
-            // console.log(`Resultado: ${num1} + ${num2} = ${(parseFloat(num1) + parseFloat(num2))}`);
             let cantidad = await preguntar("¿Cúantos números quieres sumar? ");
             let suma = 0;
             for (let i = 1; i <= cantidad; i++) {
