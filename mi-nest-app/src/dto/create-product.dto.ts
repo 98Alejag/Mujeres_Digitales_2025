@@ -1,4 +1,4 @@
-import { IsCurrency, isNotEmpty, IsNotEmpty, IsNumber, isString, IsString, MaxLength, Min } from "class-validator";
+import { IsCurrency, IsNotEmpty, IsNumber, IsString, MaxLength, Min } from "class-validator";
 
 export class CreateProductDTO {
 
@@ -18,6 +18,7 @@ export class CreateProductDTO {
 
     @IsNotEmpty()
     @IsString()
+    @MaxLength(3)
     currency: string;
 
     @IsNotEmpty()
