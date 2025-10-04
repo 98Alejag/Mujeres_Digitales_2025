@@ -9,8 +9,8 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     @Get()
-    findALL() {
-        return this.usersService.findALL();
+    findAll() {
+        return this.usersService.findAll();
     }
     @Get(':id')
     findOne(@Param('id') id: string) {

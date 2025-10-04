@@ -8,8 +8,8 @@ export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
     @Get()
-    findALL() {
-        return this.productsService.findALL();
+    findAll() {
+        return this.productsService.findAll();
     }
     @Get(':id')
     findOne(@Param('id') id: string) {
@@ -19,13 +19,13 @@ export class ProductsController {
     create(@Body()body: CreateProductDTO) {
         return this.productsService.create(body)
     }
-    @Put(':id')
-    update(@Param('id') id: string, @Body() body: UpdateProductDTO) {
-        return this.productsService.update(Number(id), body)
-    }
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.productsService.remove(Number(id))
-    }
+    // @Put(':id')
+    // update(@Param('id') id: string, @Body() body: UpdateProductDTO) {
+    //     return this.productsService.update(Number(id), body)
+    // }
+    // @Delete(':id')
+    // remove(@Param('id') id: string) {
+    //     return this.productsService.remove(Number(id))
+    // }
     
 }
