@@ -11,12 +11,7 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepo: Repository<User>,
   ) {}
-/* 
-findAll: Method to retrieve all users from the database.
-.
 
-  }
- */
   findAll() {
     return this.usersRepo.find();
   }
