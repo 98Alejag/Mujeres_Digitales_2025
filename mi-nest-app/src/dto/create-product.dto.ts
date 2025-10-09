@@ -30,5 +30,5 @@ export class CreateProductDTO {
     @IsNumber()
     @Min(0)
     stock: number;
-
+    
 }

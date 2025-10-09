@@ -1,4 +1,4 @@
-import { IsString, Length } from 'class-validator';
+import { Length } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -29,4 +29,7 @@ export class Product {
 
   @Column({ nullable: false })
   stock: number;
+
+  @Column({ default: true })
+  isActive: boolean;
 }

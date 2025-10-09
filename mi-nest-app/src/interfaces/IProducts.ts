@@ -5,5 +5,6 @@ export type Iproduct = {
     category: string, 
     currency: string, 
     price: number, 
-    stock: number
+    stock: number,
+    isActive: boolean
 };

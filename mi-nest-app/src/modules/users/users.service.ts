@@ -11,10 +11,16 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepo: Repository<User>,
   ) {}
+/* 
+findAll: Method to retrieve all users from the database.
+.
 
+  }
+ */
   findAll() {
     return this.usersRepo.find();
   }
+  
   async findOne(id: number) {
     const userFind = await this.usersRepo.findOne({ where: { id } });
     if (!userFind) throw new NotFoundException(`User with id ${id} not found`);
