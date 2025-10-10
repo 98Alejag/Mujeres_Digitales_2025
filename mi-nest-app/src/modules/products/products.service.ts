@@ -44,12 +44,13 @@ export class ProductsService {
     await this.productRepo.update(id, updatedProduct);
     return this.productRepo.findOneBy({ id });
   }
-  async disable(id: number): Promise<void> {
+  async disable(id: number): Promise<{ message: string }> {
     const productRemoved = await this.productRepo.findOne({ where: { id } });
     if (!productRemoved)
       throw new NotFoundException(`Product with id ${id} not found`);
     productRemoved.isActive = false;
     await this.productRepo.save(productRemoved);
+    return { message: `Product with id ${id} disable successfully`}
   }
 }
 
