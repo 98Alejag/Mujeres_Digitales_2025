@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { ROLES_KEY } from "./roles.decorator";
-import { BussinessException } from "common/exceptions/bussiness.exception";
+import { BusinessException } from "common/exceptions/business.exception";
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -20,7 +20,7 @@ export class RolesGuard implements CanActivate {
         if (!user) throw new ForbiddenException('Unauthenticated user')
         
         if (!requieredRoles.includes(user.role)) {
-            throw new BussinessException('Your user does not have permission to access this path')
+            throw new BusinessException('Your user does not have permission to access this path')
         } 
 
         return true;

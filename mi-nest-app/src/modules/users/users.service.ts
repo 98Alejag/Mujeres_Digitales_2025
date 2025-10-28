@@ -16,7 +16,7 @@ export class UsersService {
   findAll() {
     return this.usersRepo.find();
   }
-  
+
   async findOne(id: number) {
     const userFind = await this.usersRepo.findOne({ where: { id } });
     if (!userFind) throw new NotFoundException(`User with id ${id} not found`);
@@ -25,26 +25,38 @@ export class UsersService {
 
   async findByName(name: string): Promise<User[]> {
     const users = await this.usersRepo.find({
-      where: { name: ILike(`%${name}%`)},
-    })
+      where: { name: ILike(`%${name}%`) },
+    });
     if (users.length === 0) {
-    throw new NotFoundException(`No users found with name: ${name}`);
-  }
+      throw new NotFoundException(`No users found with name: ${name}`);
+    }
 
-  return users;
+    return users;
   }
   create(newUser: CreateUserDTO) {
     const userCreated = this.usersRepo.create(newUser);
     return this.usersRepo.save(userCreated);
   }
-  async update(id: number, updatedUser: UpdateUserDTO) {
-    const hashedPassoword = await bcrypt.hash(updatedUser.password, 10)
-    await this.usersRepo.update(id, {...updatedUser, password: hashedPassoword});
-    return this.usersRepo.findOne({ where: { id } });
+  async update(id: number, updateUser: UpdateUserDTO) {
+    const dataToUpdate = { ...updateUser };
+    let dataWithPassword;
+
+    if (updateUser.password) {
+      const hashedPassword = await bcrypt.hash(updateUser.password, 10);
+      dataWithPassword = { ...dataToUpdate, password: hashedPassword };
+    }
+
+    await this.usersRepo.update(
+      id,
+      updateUser.password ? dataWithPassword : dataToUpdate,
+    );
+    return this.findOne(id);
   }
   async remove(id: number) {
     const result = await this.usersRepo.delete(id);
-    if (result.affected === 0) throw new NotFoundException(`User with id ${id} not found`);
+    if (result.affected === 0)
+      throw new NotFoundException(`User with id ${id} not found`);
     return { message: `User with id ${id} removed successfully` };
   }
 }
+  

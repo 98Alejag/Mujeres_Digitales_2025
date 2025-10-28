@@ -12,14 +12,11 @@ export class ProductsService {
     private productRepo: Repository<Product>,
   ) {}
 
-  // findAll() {
-  //   return this.productRepo.find();
-  // }
-  async findAll(): Promise<Product[]> {
-    return this.productRepo.find({ where: { isActive: true } });
+  findAll() {
+    return this.productRepo.findBy({ isActive: true});
   }
   async findOne(id: number) {
-    const productFind = this.productRepo.findOneBy({ id });
+    const productFind = await this.productRepo.findOneBy({ id });
     if (!productFind)
       throw new NotFoundException(`Product with id ${id} not found`);
     return productFind;
